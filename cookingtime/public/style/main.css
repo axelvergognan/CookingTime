@@ -1,0 +1,599 @@
+*{
+    padding: 0;
+    margin : 0;
+}
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+}
+
+body{
+    background-color: #efefef;
+}
+
+h1{
+    font-size: 29px;
+}
+
+h2{
+    font-size: 25px;
+}
+
+h3{
+    font-size: 23px;
+}
+
+h4{
+    font-size: 19px;
+}
+
+p{
+    color: #222222;
+    font-size: 16px;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+input:focus{
+    outline: none;
+}
+
+input[type="submit"]:hover, button:hover{
+    cursor: pointer;
+}
+
+.head{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 0px 8px;
+    height: 12vh;
+}
+
+.navigation{
+    height: 12vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+nav[name="main-nav"]{
+    width: 95%;
+}
+
+ul[name="ul-main-nav"]{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+li[name="logo-li-main-nav"]{
+    width: 15%;
+}
+
+li[name="search-li-main-nav"]{
+    width: 50%;
+}
+
+form[name='search-bar']{
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    height: 4.5ch;
+    justify-content: space-between;
+    border: 1px solid rgb(206, 206, 206);
+    /*box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;*/
+}
+
+.search-left{
+    width: 88%;
+}
+
+.search-right{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgb(206, 206, 206);
+}
+
+input[name="RecetteRecherche"], button[name="search-recette"]{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 17px;
+}
+
+i[name="icon-search-recette"]{
+    color: #e01a4f;
+    font-size: 23px;
+}
+
+li[name="account-li-main-nav"]{
+ width: 15%;
+}
+
+a[name="a-account-li-main-nav"]{
+    padding: 10px;
+    border-radius: 25px;
+    background-color: #e01a4f;
+    padding: 10px;
+    color: white;
+}
+
+img[name="img-logo-li-main-nav"]{
+    height: 50px;
+}
+
+.sticky{
+    position: fixed;
+    top: 0;
+    z-index: 99;
+}
+
+.center{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    margin-top: 5ch;
+    width: 110ch;
+    display: flex;
+    flex-direction: column
+}
+
+.container-recettes, .container-utilisateur{
+    border-radius: 8px;
+    padding: 10px;
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+container-recettes a{
+    color: #222;
+}
+
+.top-container-recettes{
+    display: flex;
+    flex-direction: column;
+}
+
+h1[name="title-top-container-recettes"]{
+    width: 100%;
+    color: #e01a4f;
+    font-size: 29px;
+}
+
+hr[name="hr-top-container-recettes"], hr[name="hr-top-container-utilisateur"]{
+    height: 2px;
+    width: 12ch;
+    border: none;
+    border-radius: 25px;
+    background-color: #e01a4f;
+    margin-top: 8px;
+}
+
+.list-filter{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+}
+
+ul[name="ul-list-filter"]{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+li[name="li-filter"]{
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 6px;
+    width: auto;
+    padding: 6px;
+}
+
+a[name="a-filter"]{
+    color: #474747;
+    border-bottom-color: transparent;
+}   
+
+a[name="a-filter"]:hover{
+    cursor: pointer;
+    border-bottom: 2px solid #e01a4f;
+    transition: border-bottom-color 0.2s;
+}
+
+.table-recettes{
+    width: 100%;
+    margin-top: 3ch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box-recette{
+    width: calc(90%/2);
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+/*
+.box-recette::before{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 25px;
+    left: 30px;
+    transform: translate(-35%, -35%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    content: "";
+    background-color: white;
+    color: white;
+}
+ */
+
+.box-recette a, a[name="a-filter"]{
+    color: #222;
+}
+
+.box-recette:hover{
+    transition: box-shadow 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+img[name="img-top-box-recette"]{
+    width: 100%;
+    max-height:100%;
+}
+
+.bottom-box-recette{
+    padding: 10px;
+    border-radius: 16px;
+}
+
+.bottom-box-recette a{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h3[name="title-bottom-box-recette"]{
+    text-align: center;
+    font-size: 24px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+p[name="difficulty-bottom-box-recette"]{
+    display: flex;
+    align-items: center;
+}
+
+.container-forms{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+h1[name="title-top-container-forms"]{
+    color: #e01a4f;
+}
+
+hr[name="hr-top-container-forms"]{
+    height: 2px;
+    width: 12ch;
+    border: none;
+    background-color: #e01a4f;
+    margin-top: 8px;
+}
+
+.table-forms{
+    margin-top: 8vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box-login, .box-signin{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    width: calc(85% / 2);
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+h3[name="title-box-login"]{
+    text-align: center;
+    color: #e01a4f;
+}
+
+form[name="form-login"], form[name="form-signin"]{
+    width: 100%;
+    margin-bottom: 2ch;
+    margin-top: 2ch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+input[name="PseudoUtilisateur"], input[name="MailUtilisateur"], input[name="MdpUtilisateur"], input[name="MdpUtilisateur2"]{
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 17px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 18px;
+    background-color: #efefef;
+}
+
+input[type="submit"]{
+    width: auto;
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 17px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 18px;
+    border: none;
+    background-color: #e01a4f;
+    color: white;
+}
+
+h1[name="title-top-container-utilisateur"]{
+    color: #e01a4f;
+}
+
+i[id="icon-edit"]{
+    margin-left: 5ch;
+}
+
+button[name="button-disconnect"]{
+    width: auto;
+    border: none;
+    border-radius: 18px;
+    padding: 10px;
+    background-color: red;
+}
+
+a[name="a-button-disconnect"]{
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    color: white;
+}
+
+.table-box-utilisateur{
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    width: 60ch;
+    height: 60vh;
+    padding: 10px;
+}
+
+.box-utilisateur{
+    width: 50ch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+ul[name="ul-action-utilisateur"]{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+li[name="li-ul-action-utilisateur"]{
+    margin-bottom: 2vh;
+    padding: 5px;
+    border-radius: 16px;
+    background-color: #e01a4f;
+}
+
+a[name="a-li-ul-action-utilisateur"]{
+    color: white;
+    padding: 5px;
+}
+
+.container-detail-recette{
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.box-add{
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+form[name="form-recette"]{
+    width: 100%;
+    margin-bottom: 2ch;
+    margin-top: 2ch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+label{
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+}
+
+input[name="TitreRecette"], input[name="DescriptionRecette"], input[name="TempsRecette"], input[name="QteIngredient[]"], input[name="UniteIngredient[]"]{
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid rgb(204, 204, 204);
+    background-color: #efefef;
+}
+
+input[name="TitreRecette"]{
+    width: 90%;
+    font-size: 20px;
+}
+
+select[name="CategorieRecette"], select[name="NiveauRecette"]{
+    width: 30%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+input[name="DescriptionRecette"]{
+    width: 50%;
+}
+
+input[name="TempsRecette"]{
+    width: 20%;
+}
+
+input[name="ImgRecette"]{
+    width: 90%;
+}
+
+.div-ingredient{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #efefef;
+    margin-bottom: 10px;
+}
+
+.div-input-ingredient{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid #c9c9c9;
+}
+
+button[name="btn-remove-ingredient"]{
+    font-size: 21px;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    color: #222222;
+}
+
+button[name="btn-add-ingredient"]{
+    width: 12ch;
+    border: none;
+    border-radius: 25px;
+    padding: 8px;
+    background-color: #e01a4f;;
+    color: white;
+}
+
+select[name="NomIngredient[]"], select[name="NomUstensile[]"]{
+    width: 30%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+input[name="QteIngredient[]"]{
+    width: 30%;
+    background-color: white;
+}
+
+input[name="UniteIngredient[]"]{
+    width: 20%;
+    background-color: white;
+}
+
+textarea[name="TexteRecette"]{
+    margin-top: 1vh;
+    width: 90%;
+    height: 10vh;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 8px;
+    font-size: 17px;
+    background-color: #efefef;
+    font-family: Arial, Helvetica, sans-serif;;
+}
+
+textarea[name="TexteRecette"]::placeholder{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input[name="createRecette"]{
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3vh;
+    padding: 8px;
+}
+
+.box-detail-recette{
+
+}
+
+h1[name="title-box-detail-recette"]{
+    width: 100%;
+    text-align: center;
+    color: #e01a4f;
+}
+
+img[name="img-box-detail-recette"]{
+    width: 50%;
+    border-radius: 16px;
+}
+
+ul[name="ul-box-detail"]{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-commentaire{
+    background-color: white;
+    padding: 10px;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+}
