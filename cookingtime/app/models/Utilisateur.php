@@ -71,7 +71,7 @@ Class Utilisateur{
         $req = Connexion::pdo()->prepare('SELECT * FROM utilisateurs WHERE IdUtilisateur = ?');
         $req->execute(array($id));
         $result = $req->fetch();
-        $u = new Utilisateur($result['IdUtilisateur'], $result['PseudoUtilisateur'], $result['MailUtilisateur'], $result['MdpUtilisateur']);
+        $u = new Utilisateur($result['IdUtilisateur'], $result['PseudoUtilisateur'], $result['MailUtilisateur'], $result['MdpUtilisateur'], $result['RoleUtilisateur']);
         return $u;
     }
 
@@ -90,7 +90,7 @@ Class Utilisateur{
         $req = Connexion::pdo()->prepare('SELECT PseudoUtilisateur, MailUtilisateur FROM utilisateurs WHERE MailUtilisateur = ?');
         $req->execute(array($email));
         $result = $req->fetch();
-        $r = new Utiliateur($result['IdUtilisateur'], $result['PseudoUtilisateur'], $result['Mailutilisateur'], $result['MdpUtilisateur']);
+        $r = new Utilisateur($result['IdUtilisateur'], $result['PseudoUtilisateur'], $result['Mailutilisateur'], $result['MdpUtilisateur']);
         return $r;
     }
 

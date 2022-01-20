@@ -43,4 +43,12 @@ Class Ustensile {
         return $tab;
     }
 
+    public static function getUstensileById($IdUstensile){
+        $req = Connexion::pdo()->prepare('SELECT * FROM ustensiles WHERE IdUstensile = ?');
+        $req->execute(array($IdUstensile));
+        $result = $req->fetch();
+        $u = new Ustensile($result['IdUstensile'], $result['NomUstensile']);
+        return $u;
+    }
+
 }

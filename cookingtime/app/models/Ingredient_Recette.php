@@ -57,7 +57,14 @@ Class Ingredient_Recette {
     }
 
     public static function addIngredient_Recette($IdIngredient, $IdRecette, $QteIngredient, $UniteIngredient){
+        $UniteIngredient = htmlspecialchars($UniteIngredient);
         $req = Connexion::pdo()->prepare('INSERT INTO ingredient_recette (IdIngredient, IdRecette, QteIngredient, UniteIngredient) VALUES(?, ?, ?, ?)');
         $req->execute(array($IdIngredient, $IdRecette, $QteIngredient, $UniteIngredient));
     }
+
+    public static function deleteIngredient_Recette($IdRecette){
+        $req = Connexion::pdo()->prepare('DELETE FROM ingredient_recette WHERE IdRecette = ?');
+        $req->execute(array($IdRecette));
+    }
+
 }

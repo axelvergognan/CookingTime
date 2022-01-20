@@ -1,9 +1,9 @@
 <?php
 class Connexion{
     static private $hostname = "localhost";
-    static private $database = "cooking_time";
-    static private $login = "root";
-    static private $password = "root";
+    static private $database = "avergog";
+    static private $login = "avergog";
+    static private $password = "R2e8Lz4gRLZ*Q?TF,nXr";
 
     static private $tabUTF8 = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
 
@@ -26,5 +26,4 @@ class Connexion{
         }
     }
 }
-
 ?>

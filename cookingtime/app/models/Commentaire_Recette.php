@@ -41,5 +41,10 @@ Class Commentaire_Recette{
         $req->execute(array($IdCommentaire, $IdRecette));
     }
 
+    public static function deleteCommentaire_Recette($IdRecette){
+        $req = Connexion::pdo()->prepare('DELETE CR.*, C.* FROM commentaire_recette CR NATURAL JOIN commentaires C WHERE IdRecette = ?');
+        $req->execute(array($IdRecette));
+    }
+
 }
 ?>

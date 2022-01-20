@@ -32,4 +32,18 @@ Class Ustensile_Recette {
         $req = Connexion::pdo()->prepare('INSERT INTO ustensile_recette (IdUstensile, IdRecette) VALUES(?, ?)');
         $req->execute(array($IdUstensile, $IdRecette));
     }
+
+    public static function deleteUstensile_Recette($IdRecette){
+        $req = Connexion::pdo()->prepare('DELETE FROM ustensile_recette WHERE IdRecette = ?');
+        $req->execute(array($IdRecette));
+}
+
+    public static function getUstensile_Recette($IdRecette){
+        $req = Connexion::pdo()->prepare('SELECT * FROM ustensile_recette WHERE IdRecette = ?');
+        $req->execute(array($IdRecette));
+        $req->setFetchMode(PDO::FETCH_CLASS, 'Ustensile_Recette');
+        $tab = $req->fetchAll();
+        return $tab;
+
+    }
 }

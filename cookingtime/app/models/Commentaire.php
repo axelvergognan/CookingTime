@@ -5,12 +5,14 @@ Class Commentaire{
     private $IdCommentaire;
     private $TexteCommentaire;
     private $DateCommentaire;
+    private $StatusCommentaire;
 
-    public function __construct($IdCommentaire = NULL, $TexteCommentaire= NULL, $DateCommentaire = NULL){
+    public function __construct($IdCommentaire = NULL, $TexteCommentaire= NULL, $DateCommentaire = NULL, $StatusCommentaire = NULL){
         if(!is_null($IdCommentaire)){
             $this->IdCommentaire = $IdCommentaire;
             $this->TexteCommentaire = $TexteCommentaire;
             $this->DateCommentaire = $DateCommentaire;
+            $this->StatusCommentaire = $StatusCommentaire;
         }
     }
 
@@ -24,6 +26,10 @@ Class Commentaire{
 
     public function getDateCommentaire(){
         return $this->DateCommentaire;
+    }
+
+    public function getStatusCommentaire(){
+        return $this->StatusCommentaire;
     }
 
     public function setIdCommentaire($IdCommentaire){
@@ -46,9 +52,10 @@ Class Commentaire{
     }
 
     public static function addCommentaire($TexteCommentaire){
+        $TexteCommentaire = htmlspecialchars($TexteCommentaire);
         $DateCommentaire = date('Y:m:d');
-        $req = Connexion::pdo()->preapre('INSERT INTO commentaires (TexteCommentaire, DateCommentaire) VALUES(?, ?)');
-        $req->execute(array($TexteCommentaire, $DateCommentaire));
+        $req = Connexion::pdo()->prepare('INSERT INTO commentaires (TexteCommentaire, DateCommentaire, StatusCommentaire) VALUES(?, ?, ?)');
+        $req->execute(array($TexteCommentaire, $DateCommentaire, 0));
     }
 
     public static function getLastIdCommentaire(){
@@ -63,8 +70,25 @@ Class Commentaire{
         $req = Connexion::pdo()->prepare('SELECT * FROM commentaires WHERE IdCommentaire = ?');
         $req->execute(array($IdCommentaire));
         $result = $req->fetch();
-        $c = new Commentaire($result['IdCommentaire'], $result['TexteCommentaire'], $result['DateCommentaire']);
+        $c = new Commentaire($result['IdCommentaire'], $result['TexteCommentaire'], $result['DateCommentaire'], $result['StatusCommentaire']);
         return $c;
+    }
+
+    public static function updateStatusCommentaire($IdCommentaire, $StatusCommentaire){
+        $req = Connexion::pdo()->prepare('UPDATE commentaires SET StatusCommentaire = ? WHERE IdCommentaire = ?');
+        $req->execute(array($StatusCommentaire, $IdCommentaire));
+    }
+
+    public static function getCommentaireByStatus2(){
+        $req = Connexion::pdo()->query('SELECT * FROM commentaires WHERE StatusCommentaire = 2');
+        $req->setFetchMode(PDO::FETCH_CLASS, 'Commentaire');
+        $tab = $req->fetchAll();
+        return $tab;
+    }
+
+    public static function deleteCommentaire($IdCommentaire){
+        $req = Connexion::pdo()->prepare('DELETE C.*, CU.*, CR.* FROM commentaires C NATURAL JOIN commentaire_utilisateur CU NATURAL JOIN commentaire_recette CR WHERE IdCommentaire = ?');
+        $req->execute(array($IdCommentaire));
     }
 
 }

@@ -1,13 +1,11 @@
 <?php
-session_start();
 require_once('conf/Connexion.php');
 require_once('models/Utilisateur.php');
+require_once('models/Recette.php');
+require_once('models/Utilisateur_Recette.php');
+require_once('models/Commentaire.php');
 
 Class ControllerUtilisateur{
-
-    public static function displayInfo(){
-        
-    }
 
     public static function connect(){
         require_once('views/Page_Connexion.php');
@@ -51,6 +49,7 @@ Class ControllerUtilisateur{
     public static function myProfile(){
         if(isset($_SESSION['IdUtilisateur'])){
             $utilisateur = Utilisateur::getUtilisateurById($_SESSION['IdUtilisateur']);
+            $lesRecettesId = Utilisateur_Recette::getRecetteByUtilisateur($_SESSION['IdUtilisateur']);
             require_once('views/Page_Utilisateur.php');
         }
         else
@@ -76,20 +75,28 @@ Class ControllerUtilisateur{
     }
 
     public static function moderation(){
-        if(isset($_SESSION['IdUtilisateur']) && $_SESSION['RoleUtilisateur'] == 2){
-            $lesUtilisateurs = Utilisateur::getAllUtilisateurs();
-            $lesRecettesNoVerif = Recette::getAllRecettesStatus0();
-            $lesCommentairesNoVerif = Commentaire::getAllCommentaires();
-            require_once('views/Page_Moderation.php');
+        if(isset($_SESSION['IdUtilisateur'])){
+            $utilisateur = Utilisateur::getUtilisateurById($_SESSION['IdUtilisateur']);
+            if($utilisateur->getRoleUtilisateur() > 0){
+                $lesUtilisateurs = Utilisateur::getAllUtilisateurs();
+                $lesRecettesNoVerif = Recette::getAllRecettesStatus0();
+                $lesCommentairesNoVerif = Commentaire::getCommentaireByStatus2();
+                require_once('views/Page_Moderation.php');
+            }
         }
+        else
+            header('Location: routeur.php');
     }
 
     public static function updatedRoleUtilisateur(){
-        if(isset($_SESSION['IdUtilisateur']) && $_SESSION['RoleUtilisateur'] == 2){
-            Utilisateur::updateRoleUtilisateur($_POST['IdUtilisateur'], $_POST['RoleUtilisateur']);
-            $controller = "ControllerUtilisateur";
-            $action = "moderation";
-            header('Location: routeur.php?controller='.$controller.'&&action='.$action);
+        if(isset($_SESSION['IdUtilisateur'])){
+            $utilisateur = Utilisateur::getUtilisateurById($_SESSION['IdUtilisateur']);
+            if($utilisateur->getRoleUtilisateur() > 0) {
+                Utilisateur::updateRoleUtilisateur($_POST['IdUtilisateur'], $_POST['RoleUtilisateur']);
+                $controller = "ControllerUtilisateur";
+                $action = "moderation";
+                header('Location: routeur.php?controller=' . $controller . '&&action=' . $action);
+            }
         }
     }
 }

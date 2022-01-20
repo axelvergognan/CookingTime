@@ -27,4 +27,12 @@ Class Categorie{
         return $tab;
     }
 
+    public static function getCategorieById($IdCategorie){
+        $req = Connexion::pdo()->prepare('SELECT * FROM categories WHERE IdCategorie = ?');
+        $req->execute(array($IdCategorie));
+        $result = $req->fetch();
+        $c = new Categorie($result['IdCategorie'], $result['NomCategorie']);
+        return $c;
+    }
+
 }

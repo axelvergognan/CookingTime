@@ -1,0 +1,54 @@
+@media screen and (max-width: 115ch) {
+    .container {
+        width: 99%;
+    }
+
+    .table-recettes{
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .box-recette{
+       width: 90%;
+    }
+
+    .table-box-detail-recette, .table-box-moderation, .table-box-utilisateur, .table-forms{
+        flex-direction: column;
+    }
+
+    .box-detail-recette-ingredients, .box-detail-recette-ustensiles{
+        width: 80%;
+    }
+
+    .box-login, .box-signin{
+        width: 80%;
+    }
+
+    .box-login, .box-moderation{
+        margin-bottom: 5vh;
+    }
+
+    .list-filter{
+        width: 90%;
+    }
+
+    img[name="img-detail-recette"]{
+        width: 70%;
+    }
+
+    .navigation{
+        display: none;
+    }
+
+    .navigation2{
+        visibility: visible;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        height: 12vh;
+        width: 100%;
+        background-color: white;
+        padding-bottom: 2vh;
+    }
+}

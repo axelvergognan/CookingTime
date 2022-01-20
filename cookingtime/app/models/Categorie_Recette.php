@@ -33,5 +33,18 @@ Class Categorie_Recette{
         $req->execute(array($IdCategorie, $IdRecette));
     }
 
+    public static function updateCategorie_Recette($IdCategorie, $IdRecette){
+        $req = Connexion::pdo()->prepare('UPDATE categorie_recette SET IdCategorie = ? WHERE IdRecette = ? ');
+        $req->execute(array($IdCategorie, $IdRecette));
+    }
+
+    public static function getCategorie_Recette($IdRecette){
+        $req = Connexion::pdo()->prepare('SELECT * FROM categorie_recette WHERE IdRecette = ?');
+        $req->execute(array($IdRecette));
+        $result = $req->fetch();
+        $cr = new Categorie_Recette($result['IdCategorie'], $result['IdRecette']);
+        return $cr;
+    }
+
 }
 ?>
